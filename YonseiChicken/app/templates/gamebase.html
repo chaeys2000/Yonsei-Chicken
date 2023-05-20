@@ -22,6 +22,9 @@
                 <!-- 치킨 이미지 -->
                 {% block chicken_image %}{% endblock %}
             </div>
+            {% block extra_scripts %}{% endblock %}
+{% block extra_content %}
+{% endblock %}
             <div class="progress-bar">
                 <div class="progress">
                     <!-- 게이지 바 -->
@@ -31,5 +34,5 @@
         </div>
     </div>
 </body>
-{% block extra_scripts %}{% endblock %}
+
 </html>

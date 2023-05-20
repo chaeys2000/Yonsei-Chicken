@@ -21,6 +21,6 @@ def rank(request):
   
   return render(request, 'rank.html')
 
-def singup(request):
+def signup(request):
   
   return render(request, 'signup.html')
