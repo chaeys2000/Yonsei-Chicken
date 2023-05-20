@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
 {% endblock css %}
 {% block content %}
-{{ error }}
+
 <form action="" method="POST">
     {% csrf_token %}
     <div class="container">
@@ -16,6 +16,7 @@
         <div class="pw-box">비밀번호 : 
             <input type="text" placeholder="비밀번호을 입력해주세요" name="userpw">
         </div>
+        {{ error }}
         <input type="submit" value="완료">
     </div>
 </form>

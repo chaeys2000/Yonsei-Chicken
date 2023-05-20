@@ -24,7 +24,7 @@
 <div id="canvas-container">
     <img id="character" src="{% static 'before_fried.png' %}" alt="Character" />
     <canvas id="canvas"></canvas>
-</div>
+</div> 
 {% endblock %}
 
 {% block progress_bar %}
@@ -102,6 +102,7 @@ function stopDrawing(event) {
     if (coloredPixelCount > halfWidth ) {
         // 팝업 창 띄우기
         openModal();
+
 
     } else {
         stopDrawing2();
