@@ -50,7 +50,7 @@ function draw(event) {
     const y = event.clientY - rect.top;
 
     context.strokeStyle = 'yellow';
-    context.lineWidth = 10;
+    context.lineWidth = 15;
     context.lineCap = 'round';
     
     context.beginPath();
@@ -64,12 +64,12 @@ function draw(event) {
 
 function stopDrawing(event) {
     isDrawing = false;
-
+    
     const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     const pixels = imageData.data;
-    const halfWidth = canvas.width / 2;
+    const halfWidth = (canvas.width * canvas.height) / 5;
     let coloredPixelCount = 0;
-
+  
     // 색칠된 픽셀 개수 세기
     for (let i = 0; i < pixels.length; i += 4) {
         const r = pixels[i];
@@ -82,8 +82,9 @@ function stopDrawing(event) {
         }
     }
 
+    console.log(coloredPixelCount, halfWidth);
     // 색칠된 부분이 이미지 전체 너비의 절반을 초과하는지 확인
-    if (coloredPixelCount > halfWidth) {
+    if (coloredPixelCount > halfWidth ) {
         // 팝업 창 띄우기
         const popup = document.createElement('div');
         popup.className = 'popup';
@@ -100,6 +101,7 @@ function stopDrawing(event) {
     } else {
         stopDrawing2();
     }
+    
 }
 
 
