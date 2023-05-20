@@ -23,4 +23,4 @@ def rank(request):
 
 def singup(request):
   
-  return render(request, 'singup.html')
+  return render(request, 'signup.html')
