@@ -6,30 +6,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>연X 치킨 튀기기</title>
   {% load static %}
+
   <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
 </head>
 
 <body>
-    <div class="container">
-        <div class="game-name">
-            연X 치킨 튀기기
+  <div class="container">
+    <div class="header">
+      <div class="user-actions">
+        <div class="user-action">
+          <a href="/login">로그인</a>
         </div>
-        <div class="game-actions">
-            <div class="game-action">
-                치킨튀기기
-            </div>
-            <div class="game-action">
-                치킨 창고
-            </div>
+        <div class="user-action">
+          <a href="/signup">회원가입</a>
         </div>
-        <div class="user-actions">
-            <div class="user-action">
-                <a href="/login">로그인</a>
-            </div>
-            <div class="user-action">
-                <a href="/signup">회원가입</a>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="game-title">
+      <div class="game-name">
+        연x세 치킨 튀기기
+      </div>
+    </div>
+    <div class="game-actions">
+      <div class="game-action">
+        치킨튀기기
+      </div>
+      <div class="game-action">
+        치킨 창고
+      </div>
+    </div>
+    < controls autoplay class="test">
+      <source src="{% static 'audio/ysck.mp3' %}"
+     <!-- <source  type="audio/mpeg">
+      이 브라우저는 오디오 요소를 지원하지 않습다. -->
+    </audio>
+  </div>
+  <script>
+const test = document.querySelector(".test");
+test.play();
+  </script>
 </body>
 </html>

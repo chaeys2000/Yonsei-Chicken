@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 def main(request):
-  
+
   return render(request, 'main.html')
 
 def fur(request):
@@ -21,6 +21,6 @@ def rank(request):
   
   return render(request, 'rank.html')
 
-def singup(request):
+def signup(request):
   
   return render(request, 'signup.html')
