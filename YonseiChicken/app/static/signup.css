@@ -17,8 +17,8 @@ body {
     padding-left: 10px;
     padding-right: 10px;
     padding: 50px;
-    background-color: lightgoldenrodyellow;
-    border: 6px solid rgb(109, 104, 248);
+    background-image: linear-gradient(to bottom, #FFD700, #FFA500);
+    border: 6px solid black
     border-radius: 10px;
     box-sizing: border-box;
 }
@@ -44,14 +44,14 @@ body {
   input[type="text"] {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid white;
     border-radius: 5px;
   }
   
   input[type="submit"] {
     width: 70%;
     padding: 10px;
-    background-color:  rgb(131, 129, 252);
+    background-color: black;
     color: white;
     font-size: 18px;
     font-weight: bold;
