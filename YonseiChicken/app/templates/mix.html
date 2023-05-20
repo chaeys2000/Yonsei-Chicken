@@ -7,19 +7,17 @@
 
 {% block mention %}
     <p>드래그해서 치킨 반죽을 해주세요</p>
-    <div class="modal hidden">
+    <div class="modal hidden" >
       <div class="modal-content">
         <div class="box">
-          <h2>맛있게 털을 벗겨졌네요!!</h2>
-          <p>이제 염지한 치킨을</p>
-          <p>튀김반죽을 실컷 발라주세요</p>
-          <a href="/mix">다음 단계</a>
+          <h2>연세치킨이 완성됐어요!</h2>
+          <p>쫄깃쫄깃 바삭바삭 겉바속촉</p>
+          <p>연세 치킨이 찾아왔어요~.</p>
+          <a href="/fried">다음 단계로</a>
           <i class="fas fa-duotone fa-rocket fa-bounce fa-2xl"></i>
-          <button class="close">❌</button>
         </div>
-      </div>
-      <div class="modal-overlay"></div>
     </div>
+    <div class="modal-overlay"></div>
 {% endblock %}
 
 {% block chicken_image %}
@@ -48,7 +46,6 @@ characterImg.addEventListener('load', function() {
     canvas.height = characterImg.height;
 });
 
-
 function startDrawing(event) {
     isDrawing = true;
     const rect = canvas.getBoundingClientRect();
@@ -56,6 +53,9 @@ function startDrawing(event) {
     previousY = event.clientY - rect.top;
 }
 
+function openModal() {
+    modal.classList.remove('hidden');
+  };
 
 function draw(event) {
     if (!isDrawing) return;
@@ -101,17 +101,7 @@ function stopDrawing(event) {
     // 색칠된 부분이 이미지 전체 너비의 절반을 초과하는지 확인
     if (coloredPixelCount > halfWidth ) {
         // 팝업 창 띄우기
-        const popup = document.createElement('div');
-        popup.className = 'popup';
-        popup.textContent = '색칠된 부분이 이미지의 절반을 초과했습니다. 이제는 치킨을 튀겨주세요!';
-        canvasContainer.appendChild(popup);
-
-        const link = document.createElement('a');
-        link.href = 'main.html';  // 이동할 페이지의 URL을 설정하세요
-        openModal();  // 링크 텍스트를 설정하세요
-
-        popup.appendChild(link);
-        canvasContainer.appendChild(popup);
+        openModal();
 
     } else {
         stopDrawing2();
