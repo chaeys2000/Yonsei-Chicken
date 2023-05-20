@@ -21,6 +21,10 @@ def rank(request):
   
   return render(request, 'rank.html')
 
+def login(request):
+
+  return render(request, 'login.html')
+
 def signup(request):
   departments = Department.objects.all()
   if request.method == 'POST':
