@@ -87,6 +87,29 @@
 
     function openModal() {
       modal.classList.remove('hidden');
+      fetch('/chicken-count/', {
+        method: 'POST',
+        hedaers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "id": {{ user.id }}
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+            if (data) {
+            // 성공적인 응답을 받았을 때의 동작
+            // 예: 모달 닫기, 페이지 리로드 등
+            } else {
+            // 실패한 응답을 받았을 때의 동작
+            // 예: 오류 메시지 표시 등
+            }
+        })
+        .catch(error => {
+            // 에러 처리 로직
+            console.error(error);
+        });
     };
 
 
