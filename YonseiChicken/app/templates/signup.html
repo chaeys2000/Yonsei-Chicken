@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
 {% block css %}
-
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'signup.css' %}">
 {% endblock css %}
 {% block content %}
 {{ error }}
+<div class="container">
 <form action="" method="POST">
     {% csrf_token %}
     <div class="title">회원가입</div>
@@ -26,4 +28,5 @@
     </div>
     <input type="submit" value="회원가입">
 </form>
+</div>
 {% endblock content %}
