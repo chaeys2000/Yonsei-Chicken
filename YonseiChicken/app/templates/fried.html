@@ -1,0 +1,79 @@
+{% extends "gamebase.html" %}
+
+{% block css %}
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'fried.css' %}">
+{% endblock %}
+
+{% block mention %}
+    <h2>튀김기로 치킨을 드래그 해서 튀겨주세요!</h2>
+{% endblock %}
+
+{% block chicken_image %}
+    <div id="timer"></div>
+    <div class="fried-body">
+        <img src="{% static 'chicken_image.png' %}" id="chicken" alt="chicken_image" draggable="true">
+        <img src="{% static 'frymachine.png' %}" id="machine" alt="chicken_machine">
+    </div>
+    <div id="popup" style="display: none;">
+        <a href="main/">홈으로</a>
+        <a href="rank/">치킨 창고</a>
+        <img src="{% static 'popup_image.png' %}" alt="팝업 이미지">
+    </div>
+
+{% endblock %}
+
+{% block progress_bar %}
+    <!-- 완성도 게이지를 출력하는 위치에 대한 내용을 추가합니다. -->
+    <div class="gaze">
+        <img src="{% static 'gazeimage.jpg' %}" alt="Gaze Image">
+    </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    const chickenImage = document.getElementById('chicken');
+    const machineImage = document.getElementById('machine');
+    const timerElement = document.getElementById('timer');
+
+    let timer;
+    let timeLeft = 5;
+
+    machineImage.addEventListener('dragover', (event) => {
+        event.preventDefault(); // 기본 동작 방지
+    });
+
+    machineImage.addEventListener('drop', (event) => {
+        event.preventDefault(); // 기본 동작 방지
+        chickenImage.style.display = 'none';
+        timer = setInterval(updateTimer, 1000);
+    });
+
+    machineImage.addEventListener('dragleave', (event) => {
+        event.preventDefault(); // 기본 동작 방지
+        chickenImage.style.display = 'inline-block';
+        clearInterval(timer);
+        timerElement.textContent = '';
+    });
+
+    function updateTimer() {
+        if (timeLeft > 0) {
+            timerElement.textContent = `조리를 시작합니다. 남은 시간: ${timeLeft}초`;
+            timeLeft--;
+        } else {
+            clearInterval(timer);
+            timerElement.textContent = '조리가 완료되었습니다.';
+            showPopup();//타이머 종료 후 팝업 보이기
+        }
+    }        
+    
+    function showPopup() {
+        const popup = document.getElementById('popup');
+        popup.style.display = 'block';
+        chickenImage.style.display = 'none';
+        machineImage.style.display = 'none';
+        
+    }
+
+</script>
+{% endblock %}
