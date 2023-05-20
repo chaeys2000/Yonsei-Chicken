@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'fur.css' %}">
 {% endblock %}
 
+< class="container">
 {% block mention %}
 <p>터치하여 털을 뽑아주세요</p>
 <div class="test"></div>
@@ -86,7 +87,7 @@ overlay.addEventListener("click", closeModal);
 
 {% block progress_bar %}
     <!-- 완성도 게이지를 출력하는 위치에 대한 내용을 추가합니다. -->
-    <div class="gaze">
-        <img src="{% static 'gazeimage.jpg' %}">
-    </div>
+    
+<img class= "gazeimg" src="{% static 'gazeimage.png' %}">
 {% endblock %}
+</div>
