@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .models import Person, CountChicken, Department, User
 # Create your views here.
 def main(request):
-  
   return render(request, 'main.html')
 
 def fur(request):
