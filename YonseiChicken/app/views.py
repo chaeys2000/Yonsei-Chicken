@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from .models import Person, CountChicken, Department, User
 # Create your views here.
 def main(request):
 
@@ -22,6 +22,20 @@ def rank(request):
   return render(request, 'rank.html')
 
 def signup(request):
-  
-  return render(request, 'signup.html')
+  departments = Department.objects.all()
+  if request.method == 'POST':
+    new_user = User.objects.create(
+      username = request.POST['userid'],
+      password = request.POST['userpw']
+    )
+    new_department = Department.objects.create(
+      department_name = request.POST['department']
+    ) 
+    Person.objects.create(
+      user = new_user,
+      nickname = request.POST['usernickname'],
+      department = new_department,
+    )
 
+    return redirect('login') 
+  return render(request, 'signup.html', {'departments': departments})
