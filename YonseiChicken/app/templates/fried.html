@@ -15,6 +15,12 @@
         <img src="{% static 'chicken_image.png' %}" id="chicken" alt="chicken_image" draggable="true">
         <img src="{% static 'frymachine.png' %}" id="machine" alt="chicken_machine">
     </div>
+    <div id="popup" style="display: none;">
+        <a href="main/">홈으로</a>
+        <a href="rank/">치킨 창고</a>
+        <img src="{% static 'popup_image.png' %}" alt="팝업 이미지">
+    </div>
+
 {% endblock %}
 
 {% block progress_bar %}
@@ -31,7 +37,7 @@
     const timerElement = document.getElementById('timer');
 
     let timer;
-    let timeLeft = 30;
+    let timeLeft = 5;
 
     machineImage.addEventListener('dragover', (event) => {
         event.preventDefault(); // 기본 동작 방지
@@ -57,7 +63,17 @@
         } else {
             clearInterval(timer);
             timerElement.textContent = '조리가 완료되었습니다.';
+            showPopup();//타이머 종료 후 팝업 보이기
         }
     }        
+    
+    function showPopup() {
+        const popup = document.getElementById('popup');
+        popup.style.display = 'block';
+        chickenImage.style.display = 'none';
+        machineImage.style.display = 'none';
+        
+    }
+
 </script>
 {% endblock %}
