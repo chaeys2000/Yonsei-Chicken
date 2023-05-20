@@ -92,7 +92,7 @@ function stopDrawing(event) {
         canvasContainer.appendChild(popup);
 
         const link = document.createElement('a');
-        link.href = 'main.html';  // 이동할 페이지의 URL을 설정하세요
+        link.href = "{% url 'fried' %}";  // 이동할 페이지의 URL을 설정하세요
         link.textContent = '치킨 튀기러 가기';  // 링크 텍스트를 설정하세요
 
         popup.appendChild(link);
