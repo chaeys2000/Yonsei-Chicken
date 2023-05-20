@@ -26,5 +26,6 @@ urlpatterns = [
     path('rank/', views.rank, name='rank'),
     path('fried/', views.fried, name='fried'),
     path('signup/', views.signup, name='signup'),
+    path('login/', views.login, name='login'),
 
 ]
