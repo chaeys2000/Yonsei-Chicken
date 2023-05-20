@@ -7,6 +7,19 @@
 
 {% block mention %}
     <p>드래그해서 치킨 반죽을 해주세요</p>
+    <div class="modal hidden">
+      <div class="modal-content">
+        <div class="box">
+          <h2>맛있게 털을 벗겨졌네요!!</h2>
+          <p>이제 염지한 치킨을</p>
+          <p>튀김반죽을 실컷 발라주세요</p>
+          <a href="/mix">다음 단계</a>
+          <i class="fas fa-duotone fa-rocket fa-bounce fa-2xl"></i>
+          <button class="close">❌</button>
+        </div>
+      </div>
+      <div class="modal-overlay"></div>
+    </div>
 {% endblock %}
 
 {% block chicken_image %}
@@ -27,12 +40,14 @@ const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 const characterImg = document.getElementById('character');
 const canvasContainer = document.getElementById('canvas-container');
+const modal = document.querySelector(".modal");
 let isDrawing = false;
 
 characterImg.addEventListener('load', function() {
     canvas.width = characterImg.width;
     canvas.height = characterImg.height;
 });
+
 
 function startDrawing(event) {
     isDrawing = true;
@@ -93,7 +108,7 @@ function stopDrawing(event) {
 
         const link = document.createElement('a');
         link.href = 'main.html';  // 이동할 페이지의 URL을 설정하세요
-        link.textContent = '치킨 튀기러 가기';  // 링크 텍스트를 설정하세요
+        openModal();  // 링크 텍스트를 설정하세요
 
         popup.appendChild(link);
         canvasContainer.appendChild(popup);
