@@ -14,12 +14,24 @@
   <div class="container">
     <div class="header">
       <div class="user-actions">
+        {% if not user.is_authenticated %}
         <div class="user-action">
           <a href="/login">로그인</a>
         </div>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <div class="user-action">
+          <a href="/logout">로그아웃</a>
+        </div>
+        <div class="user-action">
+          안녕하세요 {{ user.username }}요리사님!
+        </div>
+        {% endif %}
+        {% if not user.is_authenticated %}
         <div class="user-action">
           <a href="/signup">회원가입</a>
         </div>
+        {% endif %}
       </div>
     </div>
     <div class="game-title">

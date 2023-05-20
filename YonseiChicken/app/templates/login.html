@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
 {% endblock css %}
 {% block content %}
+{{ error }}
 <form action="" method="POST">
     {% csrf_token %}
     <div class="container">
