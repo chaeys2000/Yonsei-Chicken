@@ -9,7 +9,7 @@ class Department(models.Model):
     
 class CountChicken(models.Model):
 
-    quantity = models.PositiveIntegerField()
+    quantity = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="users_chicken")
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="Department_chicken")
     # quantity_of_department = models.PositiveIntegerField()
