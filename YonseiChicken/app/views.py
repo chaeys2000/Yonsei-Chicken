@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
-
+from .models import Person, CountChicken, Department, User
 # Create your views here.
 def main(request):
-  
   return render(request, 'main.html')
 
 def fur(request):
@@ -21,6 +20,6 @@ def rank(request):
   
   return render(request, 'rank.html')
 
-def signup(request):
+def singup(request):
   
-  return render(request, 'signup.html')
+  return render(request, 'login.html')

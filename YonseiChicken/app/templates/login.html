@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block css %}
+
+{% endblock css %}
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="title">로그인</div>
+    <div class="id-box">아이디 :
+        <input type="text" placeholder="아이디를 입력해주세요" name="userid">
+    </div>
+    <div class="pw-box">비밀번호 : 
+        <input type="text" placeholder="비밀번호을 입력해주세요" name="userpw">
+    </div>
+    <input type="submit" value="로그인">
+</form>
+{% endblock content %}
