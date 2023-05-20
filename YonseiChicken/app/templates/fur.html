@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'fur.css' %}">
 {% endblock %}
 
-< class="container">
+<div class="container">
 {% block mention %}
 <p>터치하여 털을 뽑아주세요</p>
 <div class="test"></div>
@@ -81,6 +81,37 @@ function closeModal() {
 closeBtn.addEventListener("click", closeModal);
 overlay.addEventListener("click", closeModal);
 
+document.addEventListener('DOMContentLoaded', function() {
+  var gazeImg = document.querySelector('.gazeimg');
+  var container = document.querySelector('.container');
+  var maxWidth = container.offsetWidth - gazeImg.offsetWidth;
+  var isMovingRight = true;
+  var step = 5;
+  var delay = 1000; // 애니메이션 간격을 조정할 수 있는 딜레이 값 (밀리초)
+
+  function moveGazeImg() {
+    var currentLeft = parseInt(gazeImg.style.left) || 0;
+
+    if (isMovingRight) {
+      currentLeft += step;
+      if (currentLeft >= maxWidth) {
+        currentLeft = maxWidth;
+        isMovingRight = false;
+      }
+    } else {
+      currentLeft -= step;
+      if (currentLeft <= 0) {
+        currentLeft = 0;
+        isMovingRight = true;
+      }
+    }
+
+    gazeImg.style.left = currentLeft + 'px';
+    setTimeout(moveGazeImg, delay);
+  }
+
+  moveGazeImg();
+});
 </script>
 {% endblock %}
 
