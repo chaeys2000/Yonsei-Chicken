@@ -21,6 +21,21 @@
         <img src="{% static 'popup_image.png' %}" alt="팝업 이미지">
     </div>
 
+    <div class="modal hidden">
+      <div class="modal-content">
+        <div class="box">
+          <h2>연세치킨이 완성됐어요!</h2>
+          <p>쫄깃쫄깃 바삭바삭 겉바속촉</p>
+          <p>연세 치킨이 찾아왔어요~.</p>
+          <a href="main/">홈으로</a>
+          <a href="rank/">치킨 창고</a>
+          <i class="fas fa-duotone fa-rocket fa-bounce fa-2xl"></i>
+          <button class="close">❌</button>
+        </div>
+    </div>
+    <div class="modal-overlay"></div>
+  </div>
+
 {% endblock %}
 
 {% block progress_bar %}
@@ -35,6 +50,7 @@
     const chickenImage = document.getElementById('chicken');
     const machineImage = document.getElementById('machine');
     const timerElement = document.getElementById('timer');
+    const modal = document.querySelector(".modal");
 
     let timer;
     let timeLeft = 5;
@@ -62,18 +78,30 @@
             timeLeft--;
         } else {
             clearInterval(timer);
-            timerElement.textContent = '조리가 완료되었습니다.';
-            showPopup();//타이머 종료 후 팝업 보이기
+            timerElement.textContent = `조리를 시작합니다. 남은 시간: 0초`;
+            openModal();
         }
-    }        
-    
-    function showPopup() {
-        const popup = document.getElementById('popup');
-        popup.style.display = 'block';
-        chickenImage.style.display = 'none';
-        machineImage.style.display = 'none';
-        
     }
 
-</script>
-{% endblock %}
+    function openModal() {
+      modal.classList.remove('hidden');
+    };
+
+
+    const closeBtn = modal.querySelector(".close");
+    const overlay = modal.querySelector(".modal-overlay");
+
+    /* 모달 닫을 때의 실행할 함수 정의하기 */
+
+    function closeModal() {
+    modal.classList.add('hidden');
+  }
+
+    /* 버튼 클릭했을 때 모달 비활성화하는 함수 실행하기 */
+
+    closeBtn.addEventListener("click", closeModal);
+    overlay.addEventListener("click", closeModal);
+
+
+  </script>
+  {% endblock %}
