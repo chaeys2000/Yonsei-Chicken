@@ -23,9 +23,18 @@ def rank(request):
 def signup(request):
   departments = Department.objects.all()
   if request.method == 'POST':
+    username = request.POST['userid']
+    password = request.POST['userpw']
+
+    exist_user = User.objects.filter(username=username)
+
+    if exist_user:
+      error = "이미 존재하는 아이디입니다."
+      return render(request, 'signup.html', {'error':error, 'departments': departments})
+    
     new_user = User.objects.create(
-      username = request.POST['userid'],
-      password = request.POST['userpw']
+      username = username,
+      password = password
     )
     new_department = Department.objects.create(
       department_name = request.POST['department']

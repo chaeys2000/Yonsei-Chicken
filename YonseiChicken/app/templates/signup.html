@@ -4,6 +4,7 @@
 
 {% endblock css %}
 {% block content %}
+{{ error }}
 <form action="" method="POST">
     {% csrf_token %}
     <div class="title">회원가입</div>
