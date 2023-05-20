@@ -25,22 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // 게이지 업데이트 함수
-    function updateProgressBar() {
-      var progressWidth = (imageCount / maxClicks) * 100;
-      progressBar.style.width = progressWidth + '%';
-    }
-    
     // 화살표 버튼 생성 함수
-    function createArrowButton() {
-        const buttonTest = document.querySelector('.test');
-      var arrowButton = document.createElement('button');
-      arrowButton.innerHTML = '&#8594;'; // 오른쪽 화살표 아이콘
-      arrowButton.addEventListener('click', function() {
-        window.location.href = "{% url 'mix' %}";
-      });
-      buttonTest.appendChild(arrowButton);
-    }
+    
   });
   
   
