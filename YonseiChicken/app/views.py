@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Person, CountChicken, Department, User
 # Create your views here.
 def main(request):
+
   return render(request, 'main.html')
 
 def fur(request):
@@ -20,7 +21,7 @@ def rank(request):
   
   return render(request, 'rank.html')
 
-def singup(request):
+def signup(request):
   departments = Department.objects.all()
   if request.method == 'POST':
     username = request.POST['userid']
