@@ -1,0 +1,124 @@
+{% extends "gamebase.html" %}
+
+{% block css %}
+    {% load static %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'mix.css' %}">
+{% endblock %}
+
+{% block mention %}
+    <p>드래그해서 치킨 반죽을 해주세요</p>
+{% endblock %}
+
+{% block chicken_image %}
+<div id="canvas-container">
+    <img id="character" src="{% static 'before_fried.png' %}" alt="Character" />
+    <canvas id="canvas"></canvas>
+</div>
+{% endblock %}
+
+{% block progress_bar %}
+    <!-- 완성도 게이지를 출력하는 위치에 대한 내용을 추가합니다. -->
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+const canvas = document.getElementById('canvas');
+// 캔버스와 이미지 관련 변수
+const context = canvas.getContext('2d');
+const characterImg = document.getElementById('character');
+const canvasContainer = document.getElementById('canvas-container');
+let isDrawing = false;
+
+characterImg.addEventListener('load', function() {
+    canvas.width = characterImg.width;
+    canvas.height = characterImg.height;
+});
+
+function startDrawing(event) {
+    isDrawing = true;
+    const rect = canvas.getBoundingClientRect();
+    previousX = event.clientX - rect.left;
+    previousY = event.clientY - rect.top;
+}
+
+
+function draw(event) {
+    if (!isDrawing) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    context.strokeStyle = 'yellow';
+    context.lineWidth = 10;
+    context.lineCap = 'round';
+    
+    context.beginPath();
+    context.moveTo(previousX, previousY);
+    context.lineTo(x, y);
+    context.stroke();
+
+    previousX = x;
+    previousY = y;
+}
+
+function stopDrawing(event) {
+    isDrawing = false;
+
+    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    const pixels = imageData.data;
+    const halfWidth = canvas.width / 2;
+    let coloredPixelCount = 0;
+
+    // 색칠된 픽셀 개수 세기
+    for (let i = 0; i < pixels.length; i += 4) {
+        const r = pixels[i];
+        const g = pixels[i + 1];
+        const b = pixels[i + 2];
+        const a = pixels[i + 3];
+
+        if (r === 255 && g === 255 && b === 0 && a === 255) {
+            coloredPixelCount++;
+        }
+    }
+
+    // 색칠된 부분이 이미지 전체 너비의 절반을 초과하는지 확인
+    if (coloredPixelCount > halfWidth) {
+        // 팝업 창 띄우기
+        const popup = document.createElement('div');
+        popup.className = 'popup';
+        popup.textContent = '색칠된 부분이 이미지의 절반을 초과했습니다. 이제는 치킨을 튀겨주세요!';
+        canvasContainer.appendChild(popup);
+
+        const link = document.createElement('a');
+        link.href = 'main.html';  // 이동할 페이지의 URL을 설정하세요
+        link.textContent = '치킨 튀기러 가기';  // 링크 텍스트를 설정하세요
+
+        popup.appendChild(link);
+        canvasContainer.appendChild(popup);
+
+    } else {
+        stopDrawing2();
+    }
+}
+
+
+function stopDrawing2(event) {
+    isDrawing = false;
+}
+
+// 이벤트 핸들러 등록
+canvas.addEventListener('mousedown', startDrawing);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', stopDrawing);
+canvas.addEventListener('mouseleave', function(event) {
+    if (isDrawing) {
+        stopDrawing2();
+    }
+});
+
+</script>
+{% endblock %}
+
+
+
