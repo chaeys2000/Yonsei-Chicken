@@ -21,5 +21,20 @@ def rank(request):
   return render(request, 'rank.html')
 
 def singup(request):
-  
-  return render(request, 'login.html')
+  departments = Department.objects.all()
+  if request.method == 'POST':
+    new_user = User.objects.create(
+      username = request.POST['userid'],
+      password = request.POST['userpw']
+    )
+    new_department = Department.objects.create(
+      department_name = request.POST['department']
+    ) 
+    Person.objects.create(
+      user = new_user,
+      nickname = request.POST['usernickname'],
+      department = new_department,
+    )
+
+    return redirect('login') 
+  return render(request, 'signup.html', {'departments': departments})
