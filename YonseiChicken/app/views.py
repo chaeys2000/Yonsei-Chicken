@@ -20,7 +20,7 @@ def rank(request):
   
   return render(request, 'rank.html')
 
-def signup(request):
+def singup(request):
   departments = Department.objects.all()
   if request.method == 'POST':
     new_user = User.objects.create(
@@ -38,7 +38,3 @@ def signup(request):
 
     return redirect('login') 
   return render(request, 'signup.html', {'departments': departments})
-
-def login(request):
-  
-  return render(request, 'login.html')

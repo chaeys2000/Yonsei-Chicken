@@ -1,53 +1,30 @@
-<!-- game.html -->
-
-{% extends "gamebase.html" %}
+{% extends 'gamebase.html' %}
 
 {% block css %}
-    {% load static %} 
+{% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'fur.css' %}">
 {% endblock %}
 
 {% block mention %}
-    <p>터치해서 치킨 털을 뽑아주세요</p>
+    <p>터치하여 털을 뽑아주세요</p>
 {% endblock %}
 
 {% block chicken_image %}
-    <!-- 치킨 이미지를 출력하는 위치에 대한 내용을 추가합니다. -->
-    <img id="chickenImage" src="{% static 'full_fur_image.jpg' %}" alt="Chicken with Full Fur">
+    <img id="fur-image" src="{% static 'full_fur_image.jpg' %}" alt="Chicken Fur">
 {% endblock %}
+
+
+
+{% block extra_scripts %}
+<div class="test"></div>
+    <script src="{% static 'fur.js' %}"></script>
+{% endblock %}
+
+
 
 {% block progress_bar %}
     <!-- 완성도 게이지를 출력하는 위치에 대한 내용을 추가합니다. -->
     <div class="gaze">
-        <img src="{% static 'gazeimage.jpg' %}" alt="Gaze Image">
+        <img src="{% static 'gazeimage.jpg' %}">
     </div>
-{% endblock %}
-
-{% block extra_scripts %}
-    <script>
-        let clickCount = 0;
-        const images = [
-            "{% static 'full_fur_image.jpg' %}",
-            "{% static '2_3_fur_image.jpg' %}",
-            "{% static '1_3_fur_image.jpg' %}",
-            "{% static 'no_fur_image.jpg' %}"
-        ];
-
-        function updateImage() {
-            const chickenImage = document.getElementById("chickenImage");
-            chickenImage.src = images[clickCount % images.length];
-        }
-
-        function goToMixPage() {
-            window.location.href = "{% url 'mix' %}";
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const arrowButton = document.getElementById("arrowButton");
-            arrowButton.addEventListener("click", function() {
-                clickCount++;
-                updateImage();
-            });
-        });
-    </script>
 {% endblock %}
