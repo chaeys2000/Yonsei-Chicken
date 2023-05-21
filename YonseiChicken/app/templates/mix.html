@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block mention %}
-    <p>드래그해서 치킨 반죽을 해주세요</p>
+    <p class="top">드래그해서 치킨 반죽을 해주세요</p>
     <div class="modal hidden" >
       <div class="modal-content">
         <div class="box">
@@ -21,10 +21,12 @@
 {% endblock %}
 
 {% block chicken_image %}
-<div id="canvas-container">
-    <img id="character" src="{% static 'before_fried.png' %}" alt="Character" />
-    <canvas id="canvas"></canvas>
-</div> 
+    <div class="canvas-container">
+        <img id="character" src="{% static '/image/mix.png' %}" alt="Character" />
+        <canvas id="canvas"></canvas>
+    </div> 
+</div>
+
 {% endblock %}
 
 {% block progress_bar %}
