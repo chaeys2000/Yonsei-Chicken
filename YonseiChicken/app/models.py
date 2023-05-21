@@ -2,8 +2,28 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 class Department(models.Model):
-
-    department_name = models.CharField(max_length=50)
+    # categories = (
+    #     ('경영대학', '경영대학'),
+    #     ('스마트모빌리티학부', '스마트모빌리티학부'),
+    #     ('심리학부', '심리학부'),
+    #     ('스마트보안학부', '스마트보안학부'),
+    #     ('자유전공학부','자유전공학부'),
+    #     ('보건과학대학', '보건과학대학'),
+    #     ('미디어학부', '미디어학부'),
+    #     ('국제대학', '국제대학'),
+    #     ('디자인조형학부', '디자인조형학부'),
+    #     ('정보대학', '정보대학'),
+    #     ('간호대학', '간호대학'),
+    #     ('사범대학', '사범대학'),
+    #     ('의과대학', '의과대학'),
+    #     ('공과대학', '공과대학'),
+    #     ('이과대학', '이과대학'),
+    #     ('정경대학', '정경대학'),
+    #     ('생명과학대학', '생명과학대학'),
+    #     ('문과대학', '문과대학')
+    # )
+    
+    department_name = models.CharField(max_length=50,)
     def __str__(self):
         return self.department_name
     

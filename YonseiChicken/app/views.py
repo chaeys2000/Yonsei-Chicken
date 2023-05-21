@@ -5,6 +5,7 @@ from .models import Person, CountChicken, Department, User
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.db.models import Sum
 # Create your views here.
 def main(request):
 
@@ -25,10 +26,22 @@ def mix(request):
 
 @login_required(login_url="/login/")
 def rank(request):
-  
-  
+    departments = Department.objects.all()
+    department_chickens = (
+        CountChicken.objects
+        .values('department__department_name')
+        .annotate(total_chicken=Sum('quantity'))
+        .order_by('-total_chicken')
+    )
+    user_chicken = CountChicken.objects.filter(user=request.user).first()
 
-  return render(request, 'rank.html')
+    context = {
+        'departments': departments,
+        'department_chickens': department_chickens,
+        'user_chicken': user_chicken.quantity if user_chicken else 0,
+    }
+
+    return render(request, 'rank.html', context)
 
 def login(request):
   if request.method == 'POST':
@@ -50,9 +63,23 @@ def logout(request):
 
 def signup(request):
   departments = Department.objects.all()
+  # categories = [
+  #     '경영대학',
+  #       '스마트모빌리티학부',
+  #       '심리학부'
+  #      , '스마트보안학부',
+  #       '자유전공학부',
+  #       '보건과학대학',
+  #      '미디어학부', '국제대학', '디자인조형학부', '정보대학', '간호대학', '사범대학'
+  #       , '의과대학', '공과대학', '이과대학', '정경대학', '생명과학대학', '문과대학'
+  # ]
+      
+
   if request.method == 'POST':
     username = request.POST['userid']
     password = request.POST['userpw']
+    department_name = request.POST['department']
+
 
     exist_user = User.objects.filter(username=username)
 
@@ -65,28 +92,37 @@ def signup(request):
     )
     new_user.set_password(password)
     new_user.save()
-    new_department = Department.objects.create(
-      department_name = request.POST['department']
-    ) 
+    # new_department = Department.objects.create(
+    #   department_name = request.POST['department']
+    # ) 
+    department_name = request.POST['department']
     Person.objects.create(
       user = new_user,
       nickname = request.POST['usernickname'],
-      department = new_department,
+      department = department_name,
     )
 
     return redirect('login') 
-  return render(request, 'signup.html', {'departments': departments})
+  return render(request, 'signup.html', {'departments': departments, 'categories': categories})
+
+def check_chicken(user, department):
+  # 기존 치킨 수량 가져오기
+  print(user)
+  try:
+    chicken = CountChicken.objects.get(user=user, department=department)
+    temp = chicken.quantity
+    temp += 1
+    chicken.quantity = temp
+    chicken.save()
+  except CountChicken.DoesNotExist:
+    chicken = CountChicken.objects.create(user=user, department=department, quantity=1)
+    return HttpResponse(json.dumps({'message': "create chicken", 'status':True}))
+  return HttpResponse(json.dumps({'message': "added chicken", 'status':True}))
+
 
 def add_chicken(user, department):
-  # 기존 치킨 수량 가져오기
-  chicken = CountChicken.objects.get(user=user, department=department)
-  temp = chicken.quantity
-  temp += 1
-  chicken.quantity = temp
-  chicken.save()
-
-def create_chicken(user, department):
   # 새로운 치킨 생성
+  print(user)
   chicken = CountChicken.objects.create(user=user, department=department, quantity=1)
 
 @csrf_exempt
@@ -95,7 +131,7 @@ def count(request):
     if request.method == 'POST':
       request_body = json.loads(request.body)
       # print('-------민기오빠세션', request_body)
-    
+      print(request_body)
    
       # print("count 시작")
     # 사용자와 부서 정보 가져오기
@@ -107,15 +143,11 @@ def count(request):
       person = Person.objects.get(pk = user_id)
 
       department = person.department  
-
+      filtered_user = CountChicken.objects.filter(pk = user_id)
       # 치킨 생성 또는 추가
-      try:
           # print("치킨 있다")
           # 이미 치킨이 있는 경우
-          add_chicken(person.user, department)
-      except CountChicken.DoesNotExist:
-          # print("치킨 없다")
-          # 치킨이 없는 경우
-          create_chicken(person.user, department)
+      data = check_chicken(person.user, department)
+      return HttpResponse(data)
 
-      return HttpResponse(json.dumps({'success': True}))
+  
