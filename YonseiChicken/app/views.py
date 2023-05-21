@@ -49,40 +49,62 @@ def logout(request):
   return redirect('main')
 
 def signup(request):
-  departments = Department.objects.all()
-  if request.method == 'POST':
-    username = request.POST['userid']
-    password = request.POST['userpw']
+    departments = Department.objects.all()
+    if request.method == 'POST':
+      username = request.POST['userid']
+      password = request.POST['userpw']
 
-    exist_user = User.objects.filter(username=username)
+      exist_user = User.objects.filter(username=username)
 
-    if exist_user:
-      error = "이미 존재하는 아이디입니다."
-      return render(request, 'signup.html', {'error':error, 'departments': departments})
-    
-    new_user = User.objects.create(
-      username = username,
-    )
-    new_user.set_password(password)
-    new_user.save()
-    new_department = Department.objects.create(
+      if exist_user:
+        error = "이미 존재하는 아이디입니다."
+        return render(request, 'signup.html', {'error':error, 'departments': departments})
+      
       department_name = request.POST['department']
-    ) 
-    Person.objects.create(
-      user = new_user,
-      nickname = request.POST['usernickname'],
-      department = new_department,
-    )
+      try:
+        # 이미 존재하는 단과대인 경우
+        existing_department = Department.objects.get(department_name=department_name)
+      except Department.DoesNotExist:
+        # 존재하지 않는 단과대인 경우
+        existing_department = None
+      
+      if existing_department:
+        # 이미 존재하는 단과대 사용
+        new_user = User.objects.create(
+          username = username,
+        )
+        new_user.set_password(password)
+        new_user.save()
+        Person.objects.create(
+          user = new_user,
+          nickname = request.POST['usernickname'],
+          department = existing_department,
+        )
+      else:
+        # 새로운 단과대 생성
+        new_user = User.objects.create(
+          username = username,
+        )
+        new_user.set_password(password)
+        new_user.save()
+        new_department = Department.objects.create(
+          department_name = department_name
+        ) 
+        Person.objects.create(
+          user = new_user,
+          nickname = request.POST['usernickname'],
+          department = new_department,
+        )
 
-    return redirect('login') 
-  return render(request, 'signup.html', {'departments': departments})
+      return redirect('login') 
+    return render(request, 'signup.html', {'departments': departments})
 
 def add_chicken(user, department):
   # 기존 치킨 수량 가져오기
   chicken = CountChicken.objects.get(user=user, department=department)
   temp = chicken.quantity
   temp += 1
-  chicken.quantity = temp
+  chicken.quantity = templ
   chicken.save()
 
 def create_chicken(user, department):
