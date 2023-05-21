@@ -13,7 +13,17 @@
     position: relative;
   }
   
+<<<<<<<<< Temporary merge branch 1
+p {
+    font-family: 'Dongle';
 
+}
+  
+  #fur-image {
+    display: block;
+    margin: 0 auto;
+  }
+=========
   .canvas-container {
     position: absolute;
     top: 55%;
@@ -23,11 +33,9 @@
     justify-content: center;
     align-items: center;
   }
-  
-  
  #fur-image {
     width: 100%;
-  }
+}
   
   
 .top {
@@ -41,15 +49,7 @@
   }
 /* 추가적인 스타일을 여기에 작성하세요. */
 /* 추가적인 스타일을 여기에 작성하세요. */
-p {
-    font-family: 'Dongle';
-
-}
-  
-  #fur-image {
-    display: block;
-    margin: 0 auto;
-  }
+>>>>>>>>> Temporary merge branch 2
 .modal {
     position: fixed;
     top: 0;
@@ -86,8 +86,11 @@ p {
   
   .box {
     border: 2px solid black;
-    font-family: 'TmoneyRoundWindExtraBold';
+<<<<<<<<< Temporary merge branch 1
     border-radius: 10px;
+=========
+    font-family: 'TmoneyRoundWindExtraBold';
+>>>>>>>>> Temporary merge branch 2
   }
   
   i {
@@ -144,6 +147,7 @@ div > .hidden {
 
 .box {
   border: 2px solid black;
+  font-family: 'TmoneyRoundWindExtraBold';
 }
 
 i {
