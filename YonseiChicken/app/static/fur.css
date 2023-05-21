@@ -13,6 +13,7 @@
     position: relative;
   }
   
+
   .canvas-container {
     position: absolute;
     top: 55%;
@@ -40,6 +41,15 @@
   }
 /* 추가적인 스타일을 여기에 작성하세요. */
 /* 추가적인 스타일을 여기에 작성하세요. */
+p {
+    font-family: 'Dongle';
+
+}
+  
+  #fur-image {
+    display: block;
+    margin: 0 auto;
+  }
 .modal {
     position: fixed;
     top: 0;
@@ -73,18 +83,11 @@
     z-index: 10;
   }
   
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  
-    border: white;
-    background-color: white;
-  }
   
   .box {
     border: 2px solid black;
     font-family: 'TmoneyRoundWindExtraBold';
+    border-radius: 10px;
   }
   
   i {
