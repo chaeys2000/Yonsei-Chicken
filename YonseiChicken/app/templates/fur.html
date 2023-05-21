@@ -5,10 +5,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'fur.css' %}">
 {% endblock %}
 
-<div class="container">
+<div class="canvas-container">
 {% block mention %}
+<div class="top">
 <p>터치하여 연새를 혼내주세요!</p>
-<div class="test"></div>
+</div>
 <div class="modal hidden">
   <div class="modal-content">
     <div class="box">
@@ -117,7 +118,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 {% block progress_bar %}
     <!-- 완성도 게이지를 출력하는 위치에 대한 내용을 추가합니다. -->
-    
-<img class= "gazeimg" src="{% static 'gazeimage.png' %}">
 {% endblock %}
 </div>

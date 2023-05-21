@@ -92,7 +92,7 @@
       modal.classList.remove('hidden');
       fetch('/chicken-count/', {
         method: 'POST',
-        hedaers: {
+        headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
