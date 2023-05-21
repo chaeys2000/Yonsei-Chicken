@@ -104,7 +104,7 @@ def add_chicken(user, department):
   chicken = CountChicken.objects.get(user=user, department=department)
   temp = chicken.quantity
   temp += 1
-  chicken.quantity = templ
+  chicken.quantity = temp
   chicken.save()
 
 def create_chicken(user, department):

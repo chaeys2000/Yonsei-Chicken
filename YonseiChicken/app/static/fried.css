@@ -5,6 +5,13 @@
   font-style: normal;
 }
 
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
 .item{ 
   position: absolute;
   top: 10%;
@@ -15,15 +22,6 @@
   font-family: 'TmoneyRoundWindExtraBold';
 }
 
-.container {
-  position:relative;
-  top: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px; /* 이미지 간격 설정 */
-  height: 100vh; /* 컨테이너의 높이 설정 */
-}
 
 .chicken,
 .machine {
@@ -38,7 +36,7 @@
 }
 
 #timer{
-  font-size: 20px;
+  font-size: 25px;
   border: 3px solid #FFD700;
   text-align: center;
 
@@ -97,7 +95,7 @@ div > .hidden {
 }
 
 .box {
-  border: 2px solid black;
+  border: 2px solid #FFD700;
 }
 
 i {
@@ -105,3 +103,20 @@ i {
   height: 50px;
   margin-top: 40px;
 }
+
+.box > a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #FFD700;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+
+  }
+  
+  .box > a:hover {
+    background-color: #FFC400;
+  }

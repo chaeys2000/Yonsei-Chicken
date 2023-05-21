@@ -21,10 +21,10 @@
             <div class="chicken-image">
                 <!-- 치킨 이미지 -->
                 {% block chicken_image %}{% endblock %}
-                <audio id="audioElement" src="{% static './audio/ysck.mp3' %}" autoplay loop></audio>
+                <audio id="audioElement" src="{% static './audio/ysck.mp3' %}" {% if base_audio_play %}autoplay loop{% endif %}></audio>
+            </div>
             {% block extra_scripts %}{% endblock %}
-{% block extra_content %}
-{% endblock %}
+            {% block extra_content %}{% endblock %}
             <div class="progress-bar">
                 <div class="progress">
                     <!-- 게이지 바 -->
@@ -33,6 +33,50 @@
             </div>
         </div>
     </div>
+    
+    <script>
+        var audioElement = document.getElementById("audioElement");
+        audioElement.volume = 0.5; // adjust the volume as desired
+        
+        // Pause audio when the page is being unloaded (e.g., navigating to a different page)
+        window.addEventListener("beforeunload", function() {
+            if (typeof base_audio_play !== 'undefined' && base_audio_play) {
+                audioElement.pause();
+            }
+        });
+        
+        // Resume audio when the page is loaded or switched to another tab
+        window.addEventListener("load", function() {
+            if (typeof base_audio_play !== 'undefined' && base_audio_play) {
+                audioElement.play();
+            }
+        });
+        
+        // Resume audio when the page gains focus
+        window.addEventListener("focus", function() {
+            if (typeof base_audio_play !== 'undefined' && base_audio_play) {
+                audioElement.play();
+            }
+        });
+        
+        // Pause audio when the page loses focus
+        window.addEventListener("blur", function() {
+            if (typeof base_audio_play !== 'undefined' && base_audio_play) {
+                audioElement.pause();
+            }
+        });
+        
+        // Resume audio when a new page is loaded using AJAX
+        document.addEventListener("DOMContentLoaded", function() {
+            var linkElements = document.querySelectorAll("a");
+            for (var i = 0; i < linkElements.length; i++) {
+                linkElements[i].addEventListener("click", function() {
+                    if (typeof base_audio_play !== 'undefined' && base_audio_play) {
+                        audioElement.play();
+                    }
+                });
+            }
+        });
+    </script>
 </body>
-
 </html>
