@@ -1,3 +1,18 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* 이미지 간격 설정 */
+  height: 100vh; /* 컨테이너의 높이 설정 */
+}
+
+.chicken,
+.machine {
+  text-align: center;
+}
+
+
+
 div > .hidden {
   display : none;
 }
