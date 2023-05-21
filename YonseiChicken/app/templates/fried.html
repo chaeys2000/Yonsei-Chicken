@@ -18,6 +18,9 @@
     <div class="machine">
         <img src="{% static '/image/fried2.gif' %}" id="machine" alt="chicken_machine">
     </div>
+    <div class="transformed-machine">
+      <img src="{% static '/image/fried1.gif' %}" id="transformed-machine" alt="transformed-machine" style="display: none";>
+    </div>
 </div>
 
 
@@ -48,6 +51,7 @@
 <script>
     const chickenImage = document.getElementById('chicken');
     const machineImage = document.getElementById('machine');
+    const transformed_machine = document.getElementById('transformed-machine');
     const timerElement = document.getElementById('timer');
     const modal = document.querySelector(".modal");
 
@@ -62,6 +66,8 @@
         event.preventDefault(); // 기본 동작 방지
         chickenImage.style.display = 'none';
         timer = setInterval(updateTimer, 1000);
+        machineImage.style.display = 'none';
+        transformed_machine.style.display = 'flex';
     });
 
     machineImage.addEventListener('dragleave', (event) => {
