@@ -18,15 +18,20 @@
     <div class="machine">
         <img src="{% static '/image/fried2.gif' %}" id="machine" alt="chicken_machine">
     </div>
+    <div class="transformed-machine">
+      <img src="{% static '/image/fried1.gif' %}" id="transformed-machine" alt="transformed-machine" style="display: none";>
+    </div>
 </div>
 
 
     <div class="modal hidden">
       <div class="modal-content">
         <div class="box">
-          <h2>연세치킨이 완성됐어요!</h2>
-          <p>쫄깃쫄깃 바삭바삭 겉바속촉</p>
-          <p>연세 치킨이 찾아왔어요~.</p>
+          <h2>연새치킨이 찾아왔어요!</h2>
+          <p>촉촉하게~ 쫄깃하게~</p>
+          <p>껍질은 바삭하게~</p>
+          <p>아 너무 맛있어~ 아 환상의 맛~</p>
+          <p>아~ 아~ 한마리 더 먹고 싶다~</p>
 
           <a href="{% url 'main' %}">홈으로</a>
           <a href="{% url 'rank' %}">치킨 창고</a>
@@ -46,6 +51,7 @@
 <script>
     const chickenImage = document.getElementById('chicken');
     const machineImage = document.getElementById('machine');
+    const transformed_machine = document.getElementById('transformed-machine');
     const timerElement = document.getElementById('timer');
     const modal = document.querySelector(".modal");
 
@@ -60,6 +66,8 @@
         event.preventDefault(); // 기본 동작 방지
         chickenImage.style.display = 'none';
         timer = setInterval(updateTimer, 1000);
+        machineImage.style.display = 'none';
+        transformed_machine.style.display = 'flex';
     });
 
     machineImage.addEventListener('dragleave', (event) => {
@@ -84,7 +92,7 @@
       modal.classList.remove('hidden');
       fetch('/chicken-count/', {
         method: 'POST',
-        hedaers: {
+        headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
