@@ -16,27 +16,13 @@
   
 p {
     font-family: 'Dongle';
-    font-size: 30px;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
-  -webkit-text-fill-color: transparent;
-    text-align: center;
+
 }
   
   #fur-image {
     display: block;
     margin: 0 auto;
   }
-  
-  
-  .box {
-    height: 100px;
-    width: 200px;
-    background-color: skyblue;
-    border-radius: 10px;
-  }
-/* 추가적인 스타일을 여기에 작성하세요. */
-/* 추가적인 스타일을 여기에 작성하세요. */
 .modal {
     position: fixed;
     top: 0;
@@ -70,17 +56,10 @@ p {
     z-index: 10;
   }
   
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  
-    border: white;
-    background-color: white;
-  }
   
   .box {
     border: 2px solid black;
+    border-radius: 10px;
   }
   
   i {
