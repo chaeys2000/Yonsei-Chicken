@@ -18,7 +18,7 @@ body {
     padding-right: 10px;
     padding: 50px;
     background-image: linear-gradient(to bottom, #FFD700, #FFA500);
-    border: 6px solid black
+    border: 6px solid black;
     border-radius: 10px;
     box-sizing: border-box;
 }
@@ -58,4 +58,10 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+.container a{
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none; 
 }

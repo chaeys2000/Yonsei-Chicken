@@ -17,9 +17,10 @@
             <input type="text" placeholder="비밀번호을 입력해주세요" name="userpw">
         </div>
         {{ error }}
-        <input type="submit" value="완료">
+        <input type="submit" value="완료"><p></p>
+        <a href="{% url 'signup' %}">회원가입</a>
+        <a href="{% url 'main' %}">홈으로</a>
     </div>
-    <a href="{% url 'signup' %}">회원가입</a>
-    <a href="{% url 'main' %}">홈으로 </a>
+    
 </form>
 {% endblock content %}

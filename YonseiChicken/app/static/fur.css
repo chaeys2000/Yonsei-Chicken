@@ -12,8 +12,6 @@
     align-items: center;
     position: relative;
   }
-  
-<<<<<<<<< Temporary merge branch 1
 p {
     font-family: 'Dongle';
 
@@ -23,7 +21,6 @@ p {
     display: block;
     margin: 0 auto;
   }
-=========
   .canvas-container {
     position: absolute;
     top: 55%;
@@ -49,7 +46,6 @@ p {
   }
 /* 추가적인 스타일을 여기에 작성하세요. */
 /* 추가적인 스타일을 여기에 작성하세요. */
->>>>>>>>> Temporary merge branch 2
 .modal {
     position: fixed;
     top: 0;
@@ -86,11 +82,8 @@ p {
   
   .box {
     border: 2px solid black;
-<<<<<<<<< Temporary merge branch 1
     border-radius: 10px;
-=========
     font-family: 'TmoneyRoundWindExtraBold';
->>>>>>>>> Temporary merge branch 2
   }
   
   i {
