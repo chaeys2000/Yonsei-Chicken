@@ -3,7 +3,30 @@
 {% block css %}
     {% load static %} 
     <link rel="stylesheet" type="text/css" href="{% static 'mix.css' %}">
-{% endblock %}
+    <style>
+      /* 추가된 CSS 스타일 */
+      .canvas-container {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+      }
+
+      #character {
+          position: relative;
+          height: 500px;
+          width: 1350px;
+          z-index: 1;
+      }
+
+      #canvas {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 2;
+      }
+    </style>
+  {% endblock %}
 
 {% block mention %}
     <p class="top">드래그해서 치킨 반죽을 해주세요</p>
@@ -42,6 +65,7 @@ const characterImg = document.getElementById('character');
 const canvasContainer = document.getElementById('canvas-container');
 const modal = document.querySelector(".modal");
 let isDrawing = false;
+let previousX, previousY;
 
 characterImg.addEventListener('load', function() {
     canvas.width = characterImg.width;
@@ -84,7 +108,7 @@ function stopDrawing(event) {
     
     const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     const pixels = imageData.data;
-    const halfWidth = (canvas.width * canvas.height) / 5;
+    const halfWidth = (canvas.width * canvas.height) / 13;
     let coloredPixelCount = 0;
   
     // 색칠된 픽셀 개수 세기
