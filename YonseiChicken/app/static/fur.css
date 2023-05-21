@@ -12,7 +12,6 @@
     align-items: center;
     position: relative;
   }
-  
   .canvas-container {
     position: absolute;
     top: 55%;
@@ -22,11 +21,9 @@
     justify-content: center;
     align-items: center;
   }
-  
-  
  #fur-image {
     width: 100%;
-  }
+}
   
   
 .top {
@@ -39,7 +36,7 @@
     font-family: 'TmoneyRoundWindExtraBold';
   }
 /* 추가적인 스타일을 여기에 작성하세요. */
-/* 추가적인 스타일을 여기에 작성하세요. */
+/* 추가적인 스타일을 여기에 작성하세요. *
 .modal {
     position: fixed;
     top: 0;
@@ -71,20 +68,6 @@
     border-radius: 5px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.4);
     z-index: 10;
-  }
-  
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  
-    border: white;
-    background-color: white;
-  }
-  
-  .box {
-    border: 2px solid black;
-    font-family: 'TmoneyRoundWindExtraBold';
   }
   
   i {
@@ -141,6 +124,7 @@ div > .hidden {
 
 .box {
   border: 2px solid black;
+  font-family: 'TmoneyRoundWindExtraBold';
 }
 
 i {
