@@ -31,6 +31,12 @@
     z-index: 1;
   }
 
+  #canvas{
+    background-image: url('{% static '/image/mix.png' %}');
+    background-size: cover;
+
+  }
+
 
   .top {
     position: absolute;
