@@ -31,6 +31,7 @@
 
 {% block extra_scripts %}
 <script>
+var base_audio_play = true;
 document.addEventListener('DOMContentLoaded', function() {
   // 변수 초기화
   var imageCount = 0;
@@ -81,6 +82,7 @@ function closeModal() {
 
 closeBtn.addEventListener("click", closeModal);
 overlay.addEventListener("click", closeModal);
+
 
 document.addEventListener('DOMContentLoaded', function() {
   var gazeImg = document.querySelector('.gazeimg');

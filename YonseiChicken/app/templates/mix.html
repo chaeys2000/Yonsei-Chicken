@@ -3,14 +3,33 @@
 {% block css %}
     {% load static %} 
     <link rel="stylesheet" type="text/css" href="{% static 'mix.css' %}">
-{% endblock %}
+    <style>
+      /* 추가된 CSS 스타일 */
+      .canvas-container {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+      }
+
+      #character {
+          position: relative;
+          height: 500px;
+          width: 1350px;
+          z-index: 1;
+      }
+
+      #canvas {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 2;
+      }
+    </style>
+  {% endblock %}
 
 {% block mention %}
-<<<<<<< HEAD
-    <p>드래그해서 연새에 반죽을 묻혀주세요!</p>
-=======
     <p class="top">드래그해서 치킨 반죽을 해주세요</p>
->>>>>>> 3d014055d877a26809e5c3d4d7ba52a72e89d1c3
     <div class="modal hidden" >
       <div class="modal-content">
         <div class="box">
@@ -39,6 +58,7 @@
 
 {% block extra_scripts %}
 <script>
+   var base_audio_play = true;
 const canvas = document.getElementById('canvas');
 // 캔버스와 이미지 관련 변수
 const context = canvas.getContext('2d');
@@ -46,6 +66,7 @@ const characterImg = document.getElementById('character');
 const canvasContainer = document.getElementById('canvas-container');
 const modal = document.querySelector(".modal");
 let isDrawing = false;
+let previousX, previousY;
 
 characterImg.addEventListener('load', function() {
     canvas.width = characterImg.width;
@@ -88,7 +109,7 @@ function stopDrawing(event) {
     
     const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     const pixels = imageData.data;
-    const halfWidth = (canvas.width * canvas.height) / 5;
+    const halfWidth = (canvas.width * canvas.height) / 13;
     let coloredPixelCount = 0;
   
     // 색칠된 픽셀 개수 세기

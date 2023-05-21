@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block mention %}
-    <h2>튀김기로 치킨을 드래그 해서 튀겨주세요!</h2>
+    <h2 class="item">튀김기로 치킨을 드래그 해서 튀겨주세요!</h2>
 {% endblock %}
 
 {% block chicken_image %}
@@ -28,6 +28,7 @@
       <div class="modal-content">
         <div class="box">
           <h2>연새치킨이 찾아왔어요!</h2>
+          <img src="../static/image/kfc.jpg"/>
           <p>촉촉하게~ 쫄깃하게~</p>
           <p>껍질은 바삭하게~</p>
           <p>아 너무 맛있어~ 아 환상의 맛~</p>
@@ -49,6 +50,7 @@
 
 {% block extra_scripts %}
 <script>
+    var base_audio_play = true;
     const chickenImage = document.getElementById('chicken');
     const machineImage = document.getElementById('machine');
     const transformed_machine = document.getElementById('transformed-machine');
